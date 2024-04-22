@@ -4,3 +4,5 @@ dump:
 	composer dump-autoload
 install:
 	composer install
+migration:
+	bin/doctrine.php orm:schema-tool:create

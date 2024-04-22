@@ -2,6 +2,52 @@
 
 declare(strict_types=1);
 
-return [
+use Doctrine\DBAL\DriverManager;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\UnderscoreNamingStrategy;
+use Doctrine\ORM\ORMSetup;
+use Psr\Container\ContainerInterface;
+use Symfony\Component\Cache\Adapter\ArrayAdapter;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
+
+return [
+    'doctrine' => [
+
+        'dev_mode' => true,
+
+        'cache_dir' => __DIR__ . '/../var/cache/doctrine/cache',
+
+        'metadata_dirs' => [__DIR__ . '/../src/Model'],
+
+        'connection' => [
+            'driver' => 'pdo_mysql',
+            'host' => getenv('DB_HOST'),
+            'user' => getenv('DB_USER'),
+            'password' => getenv('DB_PASSWORD'),
+            'dbname' => getenv('DB_NAME'),
+            'charset' => 'utf8mb4'
+        ]
+    ],
+    EntityManager::class => function(ContainerInterface $container) {
+        $settings = $container->get('doctrine');
+
+
+        $cache = $settings['dev_mode'] ?
+            new ArrayAdapter() :
+            new FilesystemAdapter(directory: $settings['cache_dir']);
+
+        $config = ORMSetup::createAttributeMetadataConfiguration(
+            $settings['metadata_dirs'],
+            $settings['dev_mode'],
+            null,
+            $cache
+        );
+
+        $config->setNamingStrategy(new UnderscoreNamingStrategy());
+
+        $connection = DriverManager::getConnection($settings['connection'], $config);
+
+        return new EntityManager($connection, $config);
+    },
 ];
