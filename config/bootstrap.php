@@ -6,9 +6,7 @@ use Slim\Factory\AppFactory;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$builder = new DI\ContainerBuilder();
-$builder->addDefinitions(require __DIR__ . '/dependencies.php');
-$container = $builder->build();
+$container = (require __DIR__ . '/container.php');
 
 $app = AppFactory::createFromContainer($container);
 
