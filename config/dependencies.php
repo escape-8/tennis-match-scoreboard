@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\UnderscoreNamingStrategy;
 use Doctrine\ORM\ORMSetup;
 use Psr\Container\ContainerInterface;
+use Slim\Views\PhpRenderer;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
@@ -49,5 +50,8 @@ return [
         $connection = DriverManager::getConnection($settings['connection'], $config);
 
         return new EntityManager($connection, $config);
+    },
+    PhpRenderer::class => function () {
+        return new PhpRenderer(__DIR__ . '/../templates');
     },
 ];
