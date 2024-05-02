@@ -6,3 +6,7 @@ install:
 	composer install
 migration:
 	bin/doctrine.php orm:schema-tool:create
+test:
+	composer test
+test-coverage:
+	composer test-coverage
