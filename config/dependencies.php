@@ -55,4 +55,15 @@ return [
     PhpRenderer::class => function () {
         return new PhpRenderer(__DIR__ . '/../templates');
     },
+
+    'redis' => [
+        'host' => getenv('DB_HOST'),
+        'port' => 6379,
+        'connectTimeout' => 2.5,
+    ],
+
+    Redis::class => function (ContainerInterface $container) {
+        $settings = $container->get('redis');
+        return new Redis($settings);
+    }
 ];
