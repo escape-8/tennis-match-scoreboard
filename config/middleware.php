@@ -7,6 +7,8 @@ use Slim\App;
 
 return static function (App $app): void
 {
-    $app->addErrorMiddleware(false, true, true);
     $app->add(ValidationExceptionHandler::class);
+    $app->addBodyParsingMiddleware();
+    $app->addRoutingMiddleware();
+    $app->addErrorMiddleware(false, true, true);
 };
