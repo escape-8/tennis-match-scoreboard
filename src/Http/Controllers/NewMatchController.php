@@ -9,26 +9,25 @@ use App\Util\Uuid;
 use App\Validator\NewMatchPlayersValidator;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Slim\Views\PhpRenderer;
+use Slim\Views\Twig;
 
 class NewMatchController
 {
-    private PhpRenderer $renderer;
+    private Twig $renderer;
     private NewMatchPlayersValidator $matchPlayersValidator;
     private OngoingMatchesService $ongoingMatchesService;
 
 
-    public function __construct(PhpRenderer $renderer, NewMatchPlayersValidator $matchPlayersValidator, OngoingMatchesService $ongoingMatchesService)
+    public function __construct(Twig $renderer, NewMatchPlayersValidator $matchPlayersValidator, OngoingMatchesService $ongoingMatchesService)
     {
         $this->renderer = $renderer;
         $this->matchPlayersValidator = $matchPlayersValidator;
         $this->ongoingMatchesService = $ongoingMatchesService;
     }
 
-
     public function index(Request $request, Response $response): Response
     {
-        return $this->renderer->render($response, 'html/pages/new-match.phtml');
+        return $this->renderer->render($response, 'html/pages/new-match.html.twig');
     }
 
     public function create(Request $request, Response $response): Response

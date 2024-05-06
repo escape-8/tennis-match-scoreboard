@@ -26,7 +26,7 @@ class NewMatchPlayersValidator
         }
 
         if (count($this->errors) > 0) {
-            throw new ValidationException('html/pages/new-match.phtml', ['errors' => $this->errors, ...$data]);
+            throw new ValidationException('html/pages/new-match.html.twig', ['errors' => $this->errors, ...$data]);
         }
 
         return new NewMatchPlayersDTO(

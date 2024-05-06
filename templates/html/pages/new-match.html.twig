@@ -1,0 +1,44 @@
+{% extends 'html/base/base.html.twig' %}
+{% block body %}
+    <div class="form">
+        <p class="form__title archivo-black-regular">NEW MATCH</p>
+        <form class="form__container" action="{{ url_for('create-new-match') }}" method="POST">
+            <div class="form__container-part">
+                <div class="form__container-input">
+                    <label class="form__label" for="p1name">Player Name 1</label>
+                    <input class="form__input"
+                           type="text" id="p1name"
+                           name="playerName1"
+                           placeholder="Daniil Medvedev"
+                           value="{{ PlayerName1 }}">
+                </div>
+                {% if errors['playerName1'] in errors %}
+                    <ul class="list error-list">
+                        {% for errorMessage in errors['playerName1'] %}
+                            <li>{{ errorMessage }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <div class="form__container-part">
+                <div class="form__container-input">
+                    <label class="form__label" for="p2name">Player Name 2</label>
+                    <input class="form__input"
+                           type="text"
+                           id="p2name"
+                           name="playerName2"
+                           placeholder="Jean-Julien Rojer"
+                           value="{{ PlayerName2 }}">
+                </div>
+                {% if errors['playerName2'] in errors %}
+                    <ul class="list error-list">
+                        {% for errorMessage in errors['playerName2'] %}
+                            <li>{{ errorMessage }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <input class="button form__button" type="submit" value="Start">
+        </form>
+    </div>
+{% endblock %}

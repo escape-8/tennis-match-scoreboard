@@ -10,13 +10,13 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Psr7\Response;
-use Slim\Views\PhpRenderer;
+use Slim\Views\Twig;
 
 class ValidationExceptionHandler implements MiddlewareInterface
 {
-    private PhpRenderer $renderer;
+    private Twig $renderer;
 
-    public function __construct(PhpRenderer $renderer)
+    public function __construct(Twig $renderer)
     {
         $this->renderer = $renderer;
     }

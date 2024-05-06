@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\UnderscoreNamingStrategy;
 use Doctrine\ORM\ORMSetup;
 use Psr\Container\ContainerInterface;
-use Slim\Views\PhpRenderer;
+use Slim\Views\Twig;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
@@ -52,8 +52,8 @@ return [
 
         return new EntityManager($connection, $config);
     },
-    PhpRenderer::class => function () {
-        return new PhpRenderer(__DIR__ . '/../templates');
+    Twig::class => function () {
+        return Twig::create(__DIR__ . '/../templates', ['cache' => false]);
     },
 
     'redis' => [
