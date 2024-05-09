@@ -11,12 +11,20 @@
             <div class="scoreboard__cell scoreboard__player-name scoreboard__player-area-name1 poppins-semibold">{{ match.playerName1 }}</div>
             <div class="scoreboard__cell scoreboard__score scoreboard__set-score-area1">{{ match.setPlayer1 }}</div>
             <div class="scoreboard__cell scoreboard__score scoreboard__game-score-area1">{{ match.gamePlayer1 }}</div>
-            <div class="scoreboard__cell scoreboard__score scoreboard__point-score-area1">{{ match.pointPlayer1 }}</div>
+            {% if match.isDeuce %}
+                <div class="scoreboard__cell scoreboard__score scoreboard__point-score-area1">{{ match.deucePointPlayer1 }}</div>
+            {% else %}
+                <div class="scoreboard__cell scoreboard__score scoreboard__point-score-area1">{{ match.pointPlayer1 }}</div>
+            {% endif %}
             <div class="scoreboard__cell scoreboard__num scoreboard__player-num2">2</div>
             <div class="scoreboard__cell scoreboard__player-name scoreboard__player-area-name2 poppins-semibold">{{ match.playerName2 }}</div>
             <div class="scoreboard__cell scoreboard__score scoreboard__set-score-area2">{{ match.setPlayer2 }}</div>
             <div class="scoreboard__cell scoreboard__score scoreboard__game-score-area2">{{ match.gamePlayer2 }}</div>
-            <div class="scoreboard__cell scoreboard__score scoreboard__point-score-area2">{{ match.pointPlayer2 }}</div>
+            {% if match.isDeuce %}
+                <div class="scoreboard__cell scoreboard__score scoreboard__point-score-area2">{{ match.deucePointPlayer2 }}</div>
+            {% else %}
+                <div class="scoreboard__cell scoreboard__score scoreboard__point-score-area2">{{ match.pointPlayer2 }}</div>
+            {% endif %}
         </div>
         <form class="scoreboard__buttons" method="POST" action="{{ url_for('update-match-score', {}, {'uuid' : match.uuid}) }}">
             <button class="button scoreboard__button poppins-medium" name="winner" type="submit" value="player1">Point Player 1</button>
