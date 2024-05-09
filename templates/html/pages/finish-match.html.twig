@@ -1,0 +1,22 @@
+{% extends 'html/base/base.html.twig' %}
+{% block body %}
+    <div class="finish-match-window">
+        <h2 class="finish-match-window__title archivo-black-regular">
+            Match finish! {{ match.winner }} win!
+        </h2>
+        <div class="scoreboard scoreboard_finish-match">
+            <div class="scoreboard__table scoreboard__table_finish-match">
+                <div class="scoreboard__cell scoreboard__header archivo-black-regular"></div>
+                <div class="scoreboard__cell scoreboard__header scoreboard__player-area-header1 archivo-black-regular">PLAYER</div>
+                <div class="scoreboard__cell scoreboard__header scoreboard__player-area-header2 archivo-black-regular"><p>SETS</p></div>
+                <div class="scoreboard__cell scoreboard__num scoreboard__player-num1">1</div>
+                <div class="scoreboard__cell scoreboard__player-name scoreboard__player-area-name1 poppins-semibold">{{ match.playerName1 }}</div>
+                <div class="scoreboard__cell scoreboard__score scoreboard__set-score-area1">{{ match.setPlayer1 }}</div>
+                <div class="scoreboard__cell scoreboard__num scoreboard__player-num2">2</div>
+                <div class="scoreboard__cell scoreboard__player-name scoreboard__player-area-name2 poppins-semibold">{{ match.playerName2 }}</div>
+                <div class="scoreboard__cell scoreboard__score scoreboard__set-score-area2">{{ match.setPlayer2 }}</div>
+            </div>
+        </div>
+        <a href="{{ url_for('home') }}" class="button">Home</a>
+    </div>
+{% endblock %}
