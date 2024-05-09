@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MatchScoreController;
 use App\Http\Controllers\NewMatchController;
 use Slim\App;
 
