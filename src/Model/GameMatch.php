@@ -10,9 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 class GameMatch
 {
     #[ORM\Id, ORM\Column(type: 'integer'), ORM\GeneratedValue(strategy: 'AUTO')]
-    private int $id;
-    #[ORM\Column(type: 'string')]
-    private string $uuid;
+    private ?int $id = null;
     #[ORM\Column(type: 'integer')]
     #[ORM\ManyToOne(targetEntity: Player::class)]
     #[ORM\JoinColumn(referencedColumnName : 'id')]
@@ -23,17 +21,14 @@ class GameMatch
     private int $player2;
     #[ORM\Column(type: 'integer')]
     private int $winner;
-    #[ORM\Column(type: 'string')]
-    private string $score;
 
-    public function __construct(int $id, string $uuid, int $idPlayer1, int $idPlayer2, int $winner, string $score)
+    public function __construct(int $idPlayer1, int $idPlayer2, int $winner)
     {
-        $this->id = $id;
-        $this->uuid = $uuid;
         $this->player1 = $idPlayer1;
         $this->player2 = $idPlayer2;
         $this->winner = $winner;
-        $this->score = $score;
+    }
+
     }
 
 }
