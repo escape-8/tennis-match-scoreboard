@@ -6,6 +6,7 @@ namespace App\Repository;
 
 use App\Model\Player;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Exception\NotSupported;
 
 class PlayersRepository
 {
@@ -30,5 +31,14 @@ class PlayersRepository
         }
 
         return false;
+    }
+
+    /**
+     * @return array<Player>
+     * @throws NotSupported
+     */
+    public function getPlayersByNames(string $namePlayer1, string $namePlayer2): array
+    {
+        return $this->ORM->getRepository(Player::class)->findBy(['name' => [$namePlayer1, $namePlayer2]]);
     }
 }
