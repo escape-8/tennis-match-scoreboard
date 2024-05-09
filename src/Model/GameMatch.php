@@ -29,6 +29,23 @@ class GameMatch
         $this->winner = $winner;
     }
 
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
+    public function getPlayer1(): int
+    {
+        return $this->player1;
+    }
+
+    public function getPlayer2(): int
+    {
+        return $this->player2;
+    }
+
+    public function getWinner(): int
+    {
+        return $this->winner;
+    }
 }
