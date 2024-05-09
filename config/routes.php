@@ -8,9 +8,11 @@ use Slim\App;
 
 return static function (App $app): void
 {
-    $app->get('/', [HomeController::class, 'index']);
+    $app->get('/', [HomeController::class, 'index'])->setName('home');
 
-    $app->get('/new-match', [NewMatchController::class, 'index']);
+    $app->get('/new-match', [NewMatchController::class, 'index'])->setName('new-match');
+
+    $app->post('/new-match', [NewMatchController::class, 'create'])->setName('create-new-match');
 
     $app->post('/new-match', [NewMatchController::class, 'create']);
 };
