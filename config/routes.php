@@ -14,5 +14,8 @@ return static function (App $app): void
 
     $app->post('/new-match', [NewMatchController::class, 'create'])->setName('create-new-match');
 
-    $app->post('/new-match', [NewMatchController::class, 'create']);
+    $app->get('/match-score', [MatchScoreController::class, 'show'])->setName('match-score');
+
+    $app->post('/match-score', [MatchScoreController::class, 'update'])->setName('update-match-score');
+
 };
