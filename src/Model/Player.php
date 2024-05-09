@@ -10,13 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Player
 {
     #[ORM\Id, ORM\Column(type: 'integer'), ORM\GeneratedValue(strategy: 'AUTO')]
-    private int $id;
+    private ?int $id = null;
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private string $name;
 
-    public function __construct(int $id, string $name)
+    public function __construct(string $name)
     {
-        $this->id = $id;
         $this->name = $name;
     }
 
