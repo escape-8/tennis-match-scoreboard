@@ -39,4 +39,9 @@ class OngoingMatchesService
     {
         return $this->ongoingMatches->get($uuid);
     }
+
+    public function save(GameMatchScore $gameMatchScore, string $uuid): void
+    {
+        $this->ongoingMatches->add($uuid, $gameMatchScore);
+    }
 }
