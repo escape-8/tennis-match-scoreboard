@@ -2,7 +2,7 @@
     <nav class="wrapper">
         <ul class="nav__list list">
             <li><a class="nav__link" href="{{ url_for('home') }}">Home</a></li>
-            <li><a class="nav__link" href="{{ url_for('new-match', {}, { 'uuid' : ''}) }}">New Match</a></li>
+            <li><a class="nav__link" href="{{ url_for('new-match') }}">New Match</a></li>
             <li><a class="nav__link" href="{{ url_for('matches', {}, { 'page' : 1, 'filter_by_name' : '' }) }}">Matches</a></li>
         </ul>
     </nav>
