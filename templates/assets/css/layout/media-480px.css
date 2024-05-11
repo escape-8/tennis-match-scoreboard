@@ -1,0 +1,14 @@
+@media screen and (max-width: 480px) {
+    .search-form__input-item {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .matches__header {
+        font-size: 10px;
+    }
+
+    .matches__body {
+        font-size: 11px;
+    }
+}

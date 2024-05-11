@@ -1,0 +1,28 @@
+.matches {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    border: 1px solid #d7d9dc;
+    border-radius: 10px;
+    padding: 5% 2%;
+    margin-bottom: 20px;
+}
+
+.matches__header {
+    text-transform: uppercase;
+}
+
+.matches__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 30px;
+    height: 100%;
+}
+
+.matches-row {
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    align-items: center;
+    text-align: center;
+}

@@ -1,0 +1,66 @@
+@media screen and (max-width: 768px) {
+    .form {
+        gap: 15px;
+    }
+
+    .form__container-input {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .form__input {
+        flex-basis: auto;
+    }
+
+    .form__title {
+        font-size: 1.3rem;
+    }
+
+    .error-list {
+        font-size: 0.6rem;
+    }
+
+    .scoreboard__header {
+        font-size: 11px;
+    }
+
+    .scoreboard__player-name {
+        font-size: 13px;
+    }
+
+    .scoreboard__score {
+        font-size: 25px;
+    }
+
+    .scoreboard__button {
+        font-size: 15px;
+    }
+
+    .finish-match-window__title {
+        font-size: 20px;
+    }
+
+    .search-form__container-input {
+        gap: 20px;
+        padding: 2% 5%;
+    }
+
+    .search-form__input-item {
+        font-size: 15px;
+        max-width: 100%;
+        justify-content: space-around;
+    }
+
+    .search-form__input {
+        flex-basis: 65%;
+    }
+
+    .matches__header {
+        font-size: 12px;
+    }
+
+    .matches__body {
+        font-size: 13px;
+        gap: 20px;
+    }
+}

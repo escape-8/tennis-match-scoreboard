@@ -1,0 +1,38 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 auto;
+}
+
+.footer__items {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer__image {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 7%;
+    opacity: 0.75;
+    transition: all 0.2s;
+}
+
+.footer__image:hover {
+    opacity: 0.6;
+}
+
+.footer__bg {
+    border-top: 1px solid #d7d9dc;
+    width: 100%;
+    background: #f2f2f2;
+}

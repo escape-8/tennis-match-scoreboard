@@ -1,0 +1,64 @@
+@media screen and (max-width: 425px) {
+    .window {
+        padding: 5% 10%;
+    }
+
+    .window__buttons {
+        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .scoreboard {
+        margin: 0 3%;
+        padding: 15% 5%;
+    }
+
+    .scoreboard__table {
+        grid-template-columns: 33.33% 33.33% 33.33%;
+        grid-template-rows: 1% 50% 25% 25% 25%;
+        grid-template-areas:
+        "player-num1 num player-num2"
+        "player-name1 player-name player-name2"
+        "set-score1 sets set-score2"
+        "game-score1 games game-score2"
+        "point-score1 points point-score2";
+        column-gap: 5px;
+        row-gap: 10px;
+        text-align: center;
+    }
+
+    .scoreboard__table:first-child {
+        row-gap: 5px;
+    }
+
+    .scoreboard__score {
+        font-size: 23px;
+    }
+
+    .scoreboard__buttons {
+        gap: 10px;
+    }
+
+    .scoreboard__button {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .scoreboard__table_finish-match {
+        grid-template-rows: 25% 50% 25%;
+        grid-template-columns: 33.33% 33.33% 33.33%;
+        grid-template-areas:
+        "player-num1 num player-num2"
+        "player-name1 player-name player-name2"
+        "set-score1 sets set-score2";
+    }
+
+    .finish-match-window__title {
+        font-size: 17px;
+    }
+
+    .search-form__container-input {
+        padding: 10% 5%;
+    }
+}

@@ -1,0 +1,126 @@
+.scoreboard {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    gap: 150px;
+    margin: 0 10%;
+    padding: 10%;
+    border: 1px solid #d7d9dc;
+    border-radius: 5px;
+}
+
+.scoreboard__table {
+    display: grid;
+    grid-template-columns: 10% 35% 18% 18% 18%;
+    grid-template-rows: 70% 50% 50%;
+    column-gap: 10px;
+    grid-template-areas:
+    "player-name player-name sets games points"
+    "player-num1 player-name1 set-score1 game-score1 point-score1"
+    "player-num2 player-name2 set-score2 game-score2 point-score2";
+    align-items: center;
+    justify-content: center;
+}
+
+.scoreboard__cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scoreboard__header {
+    font-size: 16px;
+}
+
+.scoreboard__player-area-header1 {
+    grid-area: player-name;
+}
+
+.scoreboard__player-area-header2 {
+    grid-area: sets;
+}
+
+.scoreboard__player-area-header3 {
+    grid-area: games;
+}
+
+.scoreboard__player-area-header4 {
+    grid-area: points;
+}
+
+.scoreboard__num {
+    justify-self: center;
+    align-self: center;
+    width: 35px;
+    height: 35px;
+    color: #f2f2f2;
+    font-size: 23px;
+    background-color: #668E4D;
+    border-radius: 50%;
+}
+
+.scoreboard__player-num1 {
+    grid-area: player-num1;
+}
+
+.scoreboard__player-num2 {
+    grid-area: player-num2;
+}
+
+.scoreboard__player-area-name1 {
+    grid-area: player-name1;
+}
+
+.scoreboard__player-area-name2 {
+    grid-area: player-name2;
+}
+
+.scoreboard__player-name {
+    justify-self: flex-start;
+}
+
+.scoreboard__score {
+    font-size: 23px;
+    color: #f2f2f2;
+    background-color: #051224;
+    border-radius: 5px;
+    padding: 0 15px;
+}
+
+.scoreboard__set-score-area1 {
+    grid-area: set-score1;
+}
+
+.scoreboard__set-score-area2 {
+    grid-area: set-score2;
+}
+
+.scoreboard__game-score-area1 {
+    grid-area: game-score1;
+}
+
+.scoreboard__game-score-area2 {
+    grid-area: game-score2;
+}
+
+.scoreboard__point-score-area1 {
+    grid-area: point-score1;
+}
+
+.scoreboard__point-score-area2 {
+    grid-area: point-score2;
+}
+
+.scoreboard__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 30px;
+}
+
+.scoreboard__button {
+    border-width: 0;
+    cursor: pointer;
+}
