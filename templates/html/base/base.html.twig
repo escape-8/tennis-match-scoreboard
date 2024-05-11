@@ -3,9 +3,11 @@
     {{ include('html/base/head.html.twig') }}
 <body class="body bg poppins-medium">
     {{ include('html/base/header.html.twig') }}
-<main class="wrapper main">
-    <div class="window">
-        {% block body %}{% endblock %}
+<main class="main">
+    <div class="wrapper">
+        <div class="window">
+            {% block body %}{% endblock %}
+        </div>
     </div>
 </main>
     {{ include('html/base/footer.html.twig') }}
