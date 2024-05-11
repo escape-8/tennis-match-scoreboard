@@ -3,8 +3,8 @@
         <div class="window__content">
             <img class="image" src="assets/images/scoreboard-logo.png" alt="scoreboard logo">
             <div class="window__buttons">
-                <a class="button" href="/new-match">New Match</a>
-                <a class="button" href="/matches">Matches</a>
+                <a class="button" href="{{ url_for('new-match', {}, { 'uuid' : ''}) }}">New Match</a>
+                <a class="button" href="{{ url_for('matches', {}, { 'page' : 1, 'filter_by_name' : finishMatches.findName ?? '' }) }}">Matches</a>
             </div>
         </div>
 {% endblock %}
