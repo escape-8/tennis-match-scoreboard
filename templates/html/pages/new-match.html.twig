@@ -13,7 +13,7 @@
                            value="{{ PlayerName1 }}">
                 </div>
                 {% if errors['playerName1'] in errors %}
-                    <ul class="list error-list">
+                    <ul class="list form__error-list">
                         {% for errorMessage in errors['playerName1'] %}
                             <li>{{ errorMessage }}</li>
                         {% endfor %}
@@ -31,7 +31,7 @@
                            value="{{ PlayerName2 }}">
                 </div>
                 {% if errors['playerName2'] in errors %}
-                    <ul class="list error-list">
+                    <ul class="list form__error-list">
                         {% for errorMessage in errors['playerName2'] %}
                             <li>{{ errorMessage }}</li>
                         {% endfor %}
