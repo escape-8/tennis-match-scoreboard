@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\DTO\FinishMatchDTO;
+use App\DTO\FinishGameMatchDTO;
 use App\DTO\GameMatchScoreDTO;
 use App\Service\FinishedMatchesPersistenceService;
 use App\Service\MatchScoreCalculationService;
@@ -63,7 +63,7 @@ class MatchScoreController
             return $this->renderer->render(
                 $response,
                 'html/pages/finish-match.html.twig',
-                ['match' => new FinishMatchDTO(
+                ['match' => new FinishGameMatchDTO(
                     $updateMatch->getWinner(),
                     $updateMatch->getPlayerName1(),
                     $updateMatch->getPlayerName2(),

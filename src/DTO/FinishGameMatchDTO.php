@@ -6,7 +6,7 @@ namespace App\DTO;
 
 use App\Model\Sets;
 
-class FinishMatchDTO
+class FinishGameMatchDTO
 {
     public readonly string $winner;
     public readonly string $playerName1;
