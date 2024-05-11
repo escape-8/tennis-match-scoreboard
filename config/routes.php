@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MatchesController;
 use App\Http\Controllers\MatchScoreController;
 use App\Http\Controllers\NewMatchController;
 use Slim\App;
@@ -19,4 +20,5 @@ return static function (App $app): void
 
     $app->post('/match-score', [MatchScoreController::class, 'update'])->setName('update-match-score');
 
+    $app->get('/matches', [MatchesController::class, 'index'])->setName('matches');
 };
