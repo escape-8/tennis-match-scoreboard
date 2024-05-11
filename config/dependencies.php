@@ -68,6 +68,6 @@ return [
         $redis = new Redis();
         $redis->connect($settings['host'], $settings['port']);
         $redis->auth($settings['auth']);
-        return new Redis($settings);
+        return $redis;
     }
 ];
