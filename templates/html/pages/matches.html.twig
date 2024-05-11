@@ -1,0 +1,59 @@
+{% extends 'html/base/base.html.twig' %}
+{% block body %}
+    <div class="search-form">
+        <div class="form search-form__container">
+            <form class="form__container-input search-form__container-input" action="{{ url_for('matches', {}, { 'page' : matches.page ?? null, 'filter_by_name' : matches.findPlayerName ?? '' }) }}" method="GET">
+                <label class="search-form__input-item" for="search">
+                    Player Name
+                    <input class="form__input search-form__input" type="search" id="search" name="playerName" value="{{ matches.findPlayerName ?? "" }}" placeholder="Alexander">
+                </label>
+                <button class="button form__button search-form__button" type="submit">Find</button>
+            </form>
+        </div>
+        <div class="search-form__result">
+            <div class="matches">
+                <div class="matches__header">
+                    <div class="matches-row archivo-black-regular">
+                        <div>
+                            Player 1
+                        </div>
+                        <div>
+                            Player 2
+                        </div>
+                        <div>
+                            Winner
+                        </div>
+                    </div>
+                </div>
+                <div class="matches__body">
+                    {% for match in matches.finishedMatches %}
+                        <div class="matches-row">
+                            <div>
+                                {{ match.playerName1 }}
+                            </div>
+                            <div>
+                                {{ match.playerName2 }}
+                            </div>
+                            <div>
+                                {{ match.winner }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="pagination">
+                {% if matches.page is same as 1 %}
+                    <div class="pagination__shift-button"><a class="pagination__link" href="{{ url_for('matches', {}, { 'page' : matches.page, 'filter_by_name' : matches.findPlayerName ?? null }) }}"> < </a></div>
+                {% else %}
+                    <div class="pagination__shift-button"><a class="pagination__link" href="{{ url_for('matches', {}, { 'page' : matches.page - 1, 'filter_by_name' : matches.findPlayerName ?? null }) }}"> < </a></div>
+                {% endif %}
+                <div class="pagination__page poppins-semibold">{{ matches.page }}</div>
+                {% if matches.page is same as matches.maxPages %}
+                    <div class="pagination__shift-button"><a class="pagination__link" href="{{ url_for('matches', {}, { 'page' : matches.page, 'filter_by_name' : matches.findPlayerName ?? null }) }}"> > </a></div>
+                {% else %}
+                    <div class="pagination__shift-button"><a class="pagination__link" href="{{ url_for('matches', {}, { 'page' : matches.page + 1, 'filter_by_name' : matches.findPlayerName ?? null }) }}"> > </a></div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
