@@ -59,11 +59,15 @@ return [
     'redis' => [
         'host' => getenv('DB_HOST'),
         'port' => 6379,
+        'auth' => getenv('REDIS_PASS'),
         'connectTimeout' => 2.5,
     ],
 
     Redis::class => function (ContainerInterface $container) {
         $settings = $container->get('redis');
+        $redis = new Redis();
+        $redis->connect($settings['host'], $settings['port']);
+        $redis->auth($settings['auth']);
         return new Redis($settings);
     }
 ];
