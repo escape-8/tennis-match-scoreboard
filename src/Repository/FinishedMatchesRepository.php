@@ -55,4 +55,24 @@ class FinishedMatchesRepository
             ->getResult();
     }
 
+    public function countAllFinishMatches(): int
+    {
+        return $this->ORM->getRepository(GameMatch::class)->count([]);
+    }
+
+    public function countAllMatchesByPlayerName(string $playerName): int
+    {
+        $dql =
+            "SELECT COUNT(m.id) as count " .
+            "FROM App\Model\GameMatch as m " .
+            "INNER JOIN App\Model\Player as pl1 WITH m.player1 = pl1.id " .
+            "INNER JOIN App\Model\Player as pl2 WITH m.player2 = pl2.id " .
+            "INNER JOIN App\Model\Player as pl3 WITH m.winner = pl3.id " .
+            "WHERE pl1.name LIKE :playerName OR pl2.name LIKE :playerName ";
+
+        return $this->ORM->createQuery($dql)
+            ->setParameter('playerName', "%" . $playerName . "%")
+            ->getResult()[0]['count'];
+    }
+
 }
