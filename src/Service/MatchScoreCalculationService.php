@@ -152,6 +152,7 @@ class MatchScoreCalculationService
                 break;
             case Point::DeuceAdvantage->value():
                 $gameMatchScore->getPoints()->resetPoints();
+                $gameMatchScore->getPoints()->resetDeucePoints();
                 $this->updateGame($gameMatchScore, $winner);
                 break;
         }
