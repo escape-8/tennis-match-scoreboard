@@ -10,3 +10,9 @@ test:
 	composer test
 test-coverage:
 	composer test-coverage
+lint:
+	composer lint
+	composer cs-check
+	composer stan
+lint-fix:
+	composer cs-fix
