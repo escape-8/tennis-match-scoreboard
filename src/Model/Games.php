@@ -43,6 +43,7 @@ class Games
 
     public function isTieBreak(): bool
     {
-        return $this->gamePlayer1 === Point::MinNeedGamesForSet->value() && $this->gamePlayer2 === Point::MinNeedGamesForSet->value();
+        return $this->gamePlayer1 === Point::MinNeedGamesForSet->value() &&
+               $this->gamePlayer2 === Point::MinNeedGamesForSet->value();
     }
 }

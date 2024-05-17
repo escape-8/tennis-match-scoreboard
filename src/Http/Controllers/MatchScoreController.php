@@ -21,13 +21,16 @@ class MatchScoreController
     private FinishedMatchesPersistenceService $finishedMatchesPersistenceService;
 
 
-    public function __construct(Twig $renderer, OngoingMatchesService $ongoingMatchesService, MatchScoreCalculationService $matchScoreCalculationService, FinishedMatchesPersistenceService $finishedMatchesPersistenceService)
-    {
+    public function __construct(
+        Twig $renderer,
+        OngoingMatchesService $ongoingMatchesService,
+        MatchScoreCalculationService $matchScoreCalculationService,
+        FinishedMatchesPersistenceService $finishedMatchesPersistenceService
+    ) {
         $this->renderer = $renderer;
         $this->ongoingMatchesService = $ongoingMatchesService;
         $this->matchScoreCalculationService = $matchScoreCalculationService;
         $this->finishedMatchesPersistenceService = $finishedMatchesPersistenceService;
-
     }
 
 
@@ -45,8 +48,9 @@ class MatchScoreController
                 $match->getPoints(),
                 $match->getGames(),
                 $match->getSets(),
-                )
-            ]);
+            )
+            ]
+        );
     }
 
     public function update(Request $request, Response $response): Response
@@ -68,8 +72,9 @@ class MatchScoreController
                     $updateMatch->getPlayerName1(),
                     $updateMatch->getPlayerName2(),
                     $updateMatch->getSets(),
-                    )
-                ]);
+                )
+                ]
+            );
         }
 
         $this->ongoingMatchesService->save($updateMatch, $uuid);
@@ -84,7 +89,8 @@ class MatchScoreController
                 $updateMatch->getPoints(),
                 $updateMatch->getGames(),
                 $updateMatch->getSets(),
-                )
-            ]);
+            )
+            ]
+        );
     }
 }

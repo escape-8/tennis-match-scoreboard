@@ -21,6 +21,12 @@ class FinishedMatchesRepository
         $this->ORM->persist($gameMatch);
     }
 
+    /**
+     * @param string $playerName
+     * @param int $countItems
+     * @param int $offset
+     * @return array<array-key>[]
+     */
     public function getMatchesByPlayerName(string $playerName, int $countItems, int $offset = 0): array
     {
         $dql =
@@ -39,6 +45,11 @@ class FinishedMatchesRepository
             ->getResult();
     }
 
+    /**
+     * @param int $countItems
+     * @param int $offset
+     * @return array<array-key>[]
+     */
     public function getAllGameMatchesOnPage(int $countItems, int $offset = 0): array
     {
         $dql =
@@ -74,5 +85,4 @@ class FinishedMatchesRepository
             ->setParameter('playerName', "%" . $playerName . "%")
             ->getResult()[0]['count'];
     }
-
 }

@@ -34,7 +34,7 @@ class MatchScoreCalculationServiceTest extends TestCase
         $this->assertEquals(15, $this->matchScore->getPoints()->getPointPlayer2());
     }
 
-    public function testCalcPointTwoPlayers()
+    public function testCalcPointTwoPlayers(): void
     {
         $this->calculationService->updatePoints($this->matchScore, 'player1');
         $this->calculationService->updatePoints($this->matchScore, 'player2');
@@ -161,7 +161,7 @@ class MatchScoreCalculationServiceTest extends TestCase
         $this->assertEquals(1, $this->matchScore->getSets()->getSetPlayer1());
     }
 
-    public function testFinishMatch()
+    public function testFinishMatch(): void
     {
         $winner = 'player1';
         for ($point = 1; $point <= Point::AdvantagePoints->value(); $point++) {

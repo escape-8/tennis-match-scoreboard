@@ -23,8 +23,10 @@ class FinishedMatchService
     public function getPageFindMatchesByPlayerName(string $playerName, int $page): FinishedMatchesDTO
     {
         $offset = $this->paginator->calcOffset($page);
-        $maxPages = $this->paginator->calcTotalPages($this->finishedMatchesRepo->countAllMatchesByPlayerName($playerName));
-        $matches = $this->finishedMatchesRepo->getMatchesByPlayerName($playerName, $this->paginator->getItemsPerPage(), $offset);
+        $maxPages = $this->paginator
+                         ->calcTotalPages($this->finishedMatchesRepo->countAllMatchesByPlayerName($playerName));
+        $matches = $this->finishedMatchesRepo
+                        ->getMatchesByPlayerName($playerName, $this->paginator->getItemsPerPage(), $offset);
         $arrayFinishMatches = $this->packageToDTO($matches);
 
         return new FinishedMatchesDTO($arrayFinishMatches, $playerName, $maxPages, $page);
@@ -41,6 +43,7 @@ class FinishedMatchService
     }
 
     /**
+     * @param array<array-key>[] $matches
      * @return array<FinishMatchDTO>
      */
     private function packageToDTO(array $matches): array

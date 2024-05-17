@@ -11,7 +11,6 @@ use Slim\Views\Twig;
 use Symfony\Component\Cache\Adapter\ArrayAdapter;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
-
 return [
     'doctrine' => [
 
@@ -31,7 +30,7 @@ return [
             'charset' => 'utf8mb4'
         ]
     ],
-    EntityManager::class => function(ContainerInterface $container) {
+    EntityManager::class => function (ContainerInterface $container) {
         $settings = $container->get('doctrine');
 
 

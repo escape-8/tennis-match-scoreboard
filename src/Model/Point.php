@@ -15,11 +15,10 @@ enum Point
     case MinNeedGamesForSet;
     case TieBreakNeedPoints;
     case AdvantagePoints;
-    case NeedSetsForWin;
 
     public function value(): int|string
     {
-        return match($this) {
+        return match ($this) {
             Point::StartPoint => 0,
             Point::FirstPoint => 15,
             Point::SecondPoint => 30,

@@ -14,6 +14,9 @@ class FinishedMatchesDTO
     public readonly int $maxPages;
     public readonly int $page;
 
+    /**
+     * @param array<FinishMatchDTO> $finishedMatches
+     */
     public function __construct(array $finishedMatches, string $findPlayerName, int $maxPages, int $page = 1)
     {
         $this->finishedMatches = $finishedMatches;

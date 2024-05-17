@@ -18,8 +18,11 @@ class NewMatchController
     private OngoingMatchesService $ongoingMatchesService;
 
 
-    public function __construct(Twig $renderer, NewMatchPlayersValidator $matchPlayersValidator, OngoingMatchesService $ongoingMatchesService)
-    {
+    public function __construct(
+        Twig $renderer,
+        NewMatchPlayersValidator $matchPlayersValidator,
+        OngoingMatchesService $ongoingMatchesService
+    ) {
         $this->renderer = $renderer;
         $this->matchPlayersValidator = $matchPlayersValidator;
         $this->ongoingMatchesService = $ongoingMatchesService;
@@ -35,6 +38,9 @@ class NewMatchController
         $uuid = Uuid::uuid4();
         $newMatchDTO = $this->matchPlayersValidator->validate($request->getParsedBody());
         $this->ongoingMatchesService->create($newMatchDTO, $uuid);
-        return $response->withHeader('Location', '/match-score?' . http_build_query(['uuid' => $uuid]))->withStatus(302);
+        return $response->withHeader(
+            'Location',
+            '/match-score?' . http_build_query(['uuid' => $uuid])
+        )->withStatus(302);
     }
 }

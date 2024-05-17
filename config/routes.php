@@ -8,8 +8,7 @@ use App\Http\Controllers\MatchScoreController;
 use App\Http\Controllers\NewMatchController;
 use Slim\App;
 
-return static function (App $app): void
-{
+return static function (App $app): void {
     $app->get('/', [HomeController::class, 'index'])->setName('home');
 
     $app->get('/new-match', [NewMatchController::class, 'index'])->setName('new-match');

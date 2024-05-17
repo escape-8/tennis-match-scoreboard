@@ -87,5 +87,4 @@ class Points
         $this->deucePointPlayer1 = Point::DeuceStart->value();
         $this->deucePointPlayer2 = Point::DeuceStart->value();
     }
-
 }

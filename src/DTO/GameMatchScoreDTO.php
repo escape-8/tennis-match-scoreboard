@@ -24,13 +24,14 @@ class GameMatchScoreDTO
     public readonly bool $isDeuce;
     public readonly bool $isTieBreak;
 
-    public function __construct(string $uuid,
-                                string $playerName1,
-                                string$playerName2,
-                                Points $points,
-                                Games $games,
-                                Sets $sets)
-    {
+    public function __construct(
+        string $uuid,
+        string $playerName1,
+        string $playerName2,
+        Points $points,
+        Games $games,
+        Sets $sets
+    ) {
         $this->uuid = $uuid;
         $this->playerName1 = $playerName1;
         $this->playerName2 = $playerName2;

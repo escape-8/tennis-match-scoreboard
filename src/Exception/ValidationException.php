@@ -9,8 +9,16 @@ use DomainException;
 class ValidationException extends DomainException
 {
     private string $templatePath;
+    /**
+     * @var array<array-key> $args
+     */
     private array $args;
 
+    /**
+     * @param string $templatePath
+     * @param array<array-key> $args
+     * @param int $code
+     */
     public function __construct(string $templatePath, array $args, int $code = 409)
     {
         parent::__construct();
@@ -24,6 +32,9 @@ class ValidationException extends DomainException
         return $this->templatePath;
     }
 
+    /**
+     * @return array-key[]
+     */
     public function getArgs(): array
     {
         return $this->args;

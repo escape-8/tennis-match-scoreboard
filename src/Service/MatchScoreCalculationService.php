@@ -9,18 +9,49 @@ use App\Model\Games;
 use App\Model\Point;
 use App\Model\Points;
 use App\Model\Sets;
+use Closure;
 
 class MatchScoreCalculationService
 {
+    /**
+     * @var Closure[] $playerNames
+     */
     private array $playerNames;
+    /**
+     * @var Closure[] $pointsPlayers
+     */
     private array $pointsPlayers;
+    /**
+     * @var Closure[] $deucePointsPlayers
+     */
     private array $deucePointsPlayers;
+    /**
+     * @var Closure[] $gamesPlayers
+     */
     private array $gamesPlayers;
+    /**
+     * @var Closure[] $setsPlayers
+     */
     private array $setsPlayers;
+    /**
+     * @var Closure[] $setPoint
+     */
     private array $setPoint;
+    /**
+     * @var Closure[] $setDeucePoint
+     */
     private array $setDeucePoint;
+    /**
+     * @var Closure[] $setTieBreakPoint
+     */
     private array $setTieBreakPoint;
+    /**
+     * @var Closure[] $setGame
+     */
     private array $setGame;
+    /**
+     * @var Closure[] $addSet
+     */
     private array $addSet;
 
     public function __construct()
@@ -36,8 +67,10 @@ class MatchScoreCalculationService
         ];
 
         $this->deucePointsPlayers = [
-            'player1' => fn(GameMatchScore $gameMatchScore): string => $gameMatchScore->getPoints()->getDeucePointPlayer1(),
-            'player2' => fn(GameMatchScore $gameMatchScore): string => $gameMatchScore->getPoints()->getDeucePointPlayer2(),
+            'player1' => fn(GameMatchScore $gameMatchScore): string => $gameMatchScore->getPoints()
+                ->getDeucePointPlayer1(),
+            'player2' => fn(GameMatchScore $gameMatchScore): string => $gameMatchScore->getPoints()
+                ->getDeucePointPlayer2(),
         ];
 
         $this->gamesPlayers = [
@@ -124,7 +157,8 @@ class MatchScoreCalculationService
     {
         $this->setGame[$winner]($gameMatchScore->getGames());
 
-        if ($this->gamesPlayers[$winner]($gameMatchScore) >= Point::MinNeedGamesForSet->value() &&
+        if (
+            $this->gamesPlayers[$winner]($gameMatchScore) >= Point::MinNeedGamesForSet->value() &&
             $this->haveGamesAdvantage($gameMatchScore->getGames())
         ) {
             $this->updateSet($gameMatchScore, $winner);
@@ -134,8 +168,11 @@ class MatchScoreCalculationService
 
     public function updateDeucePoints(GameMatchScore $gameMatchScore, string $winner): void
     {
-        if (($this->deucePointsPlayers['player1']($gameMatchScore) === Point::DeuceAdvantage->value() && $winner === 'player2') ||
-            ($this->deucePointsPlayers['player2']($gameMatchScore) === Point::DeuceAdvantage->value() && $winner === 'player1')
+        if (
+            ($this->deucePointsPlayers['player1']($gameMatchScore) === Point::DeuceAdvantage->value() &&
+                $winner === 'player2') ||
+            ($this->deucePointsPlayers['player2']($gameMatchScore) === Point::DeuceAdvantage->value() &&
+                $winner === 'player1')
         ) {
             $gameMatchScore->getPoints()->resetDeucePoints();
             return;
@@ -162,7 +199,8 @@ class MatchScoreCalculationService
     {
         $this->setTieBreakPoint[$winner]($gameMatchScore->getPoints());
 
-        if ($this->pointsPlayers[$winner]($gameMatchScore) >= Point::TieBreakNeedPoints->value() &&
+        if (
+            $this->pointsPlayers[$winner]($gameMatchScore) >= Point::TieBreakNeedPoints->value() &&
             $this->haveTieBreakPointsAdvantage($gameMatchScore->getPoints())
         ) {
             $this->updateSet($gameMatchScore, $winner);
@@ -185,6 +223,7 @@ class MatchScoreCalculationService
     {
         return abs($games->getGamePlayer1() - $games->getGamePlayer2()) >= Point::AdvantagePoints->value();
     }
+
     private function haveTieBreakPointsAdvantage(Points $points): bool
     {
         return abs($points->getPointPlayer1() - $points->getPointPlayer2()) >= Point::AdvantagePoints->value();

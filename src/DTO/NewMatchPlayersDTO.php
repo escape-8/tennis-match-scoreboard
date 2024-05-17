@@ -15,4 +15,14 @@ class NewMatchPlayersDTO
         $this->playerName2 = $playerName2;
     }
 
+    /**
+     * @return array<array-key>
+     */
+    public function toArray(): array
+    {
+        return [
+            'playerName1' => $this->playerName1,
+            'playerName2' => $this->playerName2
+        ];
+    }
 }

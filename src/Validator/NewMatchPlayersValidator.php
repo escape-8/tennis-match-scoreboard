@@ -9,13 +9,23 @@ use App\Exception\ValidationException;
 
 class NewMatchPlayersValidator
 {
+    /**
+     * @var array<string, array<string, string>> $errors
+     */
     private array $errors = [];
 
+    /**
+     * @return array<string, array<string, string>>
+     */
     public function getErrors(): array
     {
         return $this->errors;
     }
 
+    /**
+     * @param array<string> $data
+     * @return NewMatchPlayersDTO
+     */
     public function validate(array $data): NewMatchPlayersDTO
     {
         $this->checkDuplicate($data);
@@ -38,7 +48,8 @@ class NewMatchPlayersValidator
     public function checkNameSymbols(string $playerField, string $name): void
     {
         if (!preg_match('/^[[:alpha:]]+(?:-[[:alpha:]]+)?(?: [[:alpha:]]+(?:-[[:alpha:]]+)?)?$/mu', $name)) {
-            $this->errors[$playerField]['symbolsName'] = "Name must contains only letters one space between words if there are two words and must contain one '-' symbol";
+            $this->errors[$playerField]['symbolsName'] = "Name must contains only letters one space between words if " .
+            "there are two words and must contain one '-' symbol";
         }
     }
 
@@ -49,6 +60,10 @@ class NewMatchPlayersValidator
         }
     }
 
+    /**
+     * @param array<string> $data
+     * @return void
+     */
     public function checkDuplicate(array $data): void
     {
         $duplicates = [];
@@ -77,7 +92,7 @@ class NewMatchPlayersValidator
         return str_replace('- ', '-', $nameUpperLine);
     }
 
-    private function mbUpperCaseWords($string): string
+    private function mbUpperCaseWords(string $string): string
     {
         return mb_convert_case($string, MB_CASE_TITLE, "UTF-8");
     }

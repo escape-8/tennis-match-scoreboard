@@ -16,8 +16,11 @@ class FinishedMatchesPersistenceService
     private PlayersRepository $playersRepository;
     private Flusher $flusher;
 
-    public function __construct(FinishedMatchesRepository $finishedMatchesRepository, PlayersRepository $playersRepository, Flusher $flusher)
-    {
+    public function __construct(
+        FinishedMatchesRepository $finishedMatchesRepository,
+        PlayersRepository $playersRepository,
+        Flusher $flusher
+    ) {
         $this->finishedMatchesRepository = $finishedMatchesRepository;
         $this->playersRepository = $playersRepository;
         $this->flusher = $flusher;
@@ -25,7 +28,8 @@ class FinishedMatchesPersistenceService
 
     public function saveMatch(GameMatchScore $gameMatchScore): void
     {
-        $players = $this->playersRepository->getPlayersByNames($gameMatchScore->getPlayerName1(), $gameMatchScore->getPlayerName2());
+        $players = $this->playersRepository
+                        ->getPlayersByNames($gameMatchScore->getPlayerName1(), $gameMatchScore->getPlayerName2());
 
         [$player1, $player2] = $players;
 

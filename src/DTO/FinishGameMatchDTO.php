@@ -22,6 +22,4 @@ class FinishGameMatchDTO
         $this->setPlayer1 = $sets->getSetPlayer1();
         $this->setPlayer2 = $sets->getSetPlayer2();
     }
-
-
 }

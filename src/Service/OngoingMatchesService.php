@@ -17,22 +17,36 @@ class OngoingMatchesService
     private Flusher $flusher;
     private OngoingMatchesRepository $ongoingMatches;
 
-    public function __construct(PlayersRepository $playersRepository, Flusher $flusher, OngoingMatchesRepository $ongoingMatchesRepository)
-    {
+    public function __construct(
+        PlayersRepository $playersRepository,
+        Flusher $flusher,
+        OngoingMatchesRepository $ongoingMatchesRepository
+    ) {
         $this->playersRepository = $playersRepository;
         $this->flusher = $flusher;
         $this->ongoingMatches = $ongoingMatchesRepository;
     }
 
+    /**
+     * @param NewMatchPlayersDTO $matchPlayersDTO
+     * @param string $uuid
+     * @return void
+     */
     public function create(NewMatchPlayersDTO $matchPlayersDTO, string $uuid): void
     {
-        foreach ($matchPlayersDTO as $playerName) {
+        foreach ($matchPlayersDTO->toArray() as $playerName) {
             if (!$this->playersRepository->playerExists($playerName)) {
                 $this->playersRepository->add(new Player($playerName));
             }
         }
         $this->flusher->flush();
-        $this->ongoingMatches->add($uuid, new GameMatchScore($matchPlayersDTO->playerName1, $matchPlayersDTO->playerName2));
+        $this->ongoingMatches->add(
+            $uuid,
+            new GameMatchScore(
+                $matchPlayersDTO->playerName1,
+                $matchPlayersDTO->playerName2
+            )
+        );
     }
 
     public function getMatch(string $uuid): GameMatchScore
